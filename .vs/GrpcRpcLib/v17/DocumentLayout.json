@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entiteis.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\grpcrpclib.shared.entiteis\\models\\messagestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entiteis.csproj|solutionrelative:shared\\grpcrpclib.shared.entiteis\\models\\messagestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entiteis.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\grpcrpclib.shared.entiteis\\models\\messageenvelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entiteis.csproj|solutionrelative:shared\\grpcrpclib.shared.entiteis\\models\\messageenvelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\messagetools\\grpcrpclib.shared.messagetools\\grpcrpclib.shared.messagetools.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|solutionrelative:shared\\messagetools\\grpcrpclib.shared.messagetools\\grpcrpclib.shared.messagetools.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MessageEnvelope.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "RelativeDocumentMoniker": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "RelativeToolTip": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T17:33:21.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MessageStatus.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageStatus.cs",
+              "RelativeDocumentMoniker": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageStatus.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageStatus.cs",
+              "RelativeToolTip": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T17:33:02.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GrpcRpcLib.Shared.MessageTools",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
+              "RelativeDocumentMoniker": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
+              "RelativeToolTip": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-07T17:32:47.252Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
