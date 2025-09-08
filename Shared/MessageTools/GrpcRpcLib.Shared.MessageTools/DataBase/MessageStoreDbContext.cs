@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GrpcRpcLib.Shared.MessageTools.DataBase;
 
-public class MessageDbContext(DbContextOptions<MessageDbContext> options, string prefix = "")
+public class MessageStoreDbContext(DbContextOptions<MessageStoreDbContext> options, string prefix = "")
 	: DbContext(options)
 {
-	public DbSet<MessageEnvelope> Messages { get; set; }
+	public DbSet<MessageEnvelope> MessageEnvelopes { get; set; }
 	public DbSet<ServiceAddress> ServiceAddresses { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

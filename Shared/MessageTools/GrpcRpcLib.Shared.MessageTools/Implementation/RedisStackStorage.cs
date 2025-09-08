@@ -1,4 +1,4 @@
-﻿using GrpcRpcLib.Shared.Entiteis.Models;
+﻿using GrpcRpcLib.Shared.Entities.Models;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
 using StackExchange.Redis;
 

@@ -1,4 +1,4 @@
-﻿namespace GrpcRpcLib.Shared.Entiteis.Models;
+﻿namespace GrpcRpcLib.Shared.Entities.Models;
 
 public enum MessageStatus
 {
