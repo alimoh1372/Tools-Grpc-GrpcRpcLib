@@ -13,8 +13,12 @@ public class MessageDbContext(DbContextOptions<MessageDbContext> options, string
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfiguration(new MessageEnvelopeConfiguration(prefix));
-		modelBuilder.ApplyConfiguration(new ServiceAddressConfiguration(prefix));
-		base.OnModelCreating(modelBuilder);
+		modelBuilder.Entity<MessageEnvelope>()
+			.ToTable($"{prefix}_Messages")
+			.HasKey(m => m.Id);
+
+		modelBuilder.Entity<ServiceAddress>()
+			.ToTable($"{prefix}_ServiceAddresses")
+			.HasKey(s => s.ServiceName);
 	}
 }

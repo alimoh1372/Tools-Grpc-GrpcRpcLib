@@ -5,6 +5,7 @@ public class MessageEnvelope
 	public Guid Id { get; set; } = Guid.NewGuid();
 	public string Type { get; set; } = string.Empty;
 	public string CorrelationId { get; set; } = string.Empty;
+	public int Priority { get; set; } = 0; // 0=low, higher=better
 	public string ReplyTo { get; set; } = "";
 	public byte[] Payload { get; set; } = Array.Empty<byte>();
 	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

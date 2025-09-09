@@ -1,5 +1,6 @@
 ﻿using GrpcRpcLib.Shared.Entities.Models;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
+using Newtonsoft.Json;
 
 namespace GrpcRpcLib.Shared.MessageTools.Implementation;
 

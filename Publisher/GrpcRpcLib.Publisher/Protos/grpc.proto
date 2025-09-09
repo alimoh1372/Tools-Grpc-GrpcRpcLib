@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcRpcLib.Publisher.Protos";
+
+message MessageEnvelope {
+	string id = 1;
+	string type = 2;
+	string correlation_id = 3;
+	string reply_to = 4;
+	bytes payload = 5;
+	string created_at = 6;
+	string status = 7;
+	int32 retry_count = 8;
+	string last_retry_at = 9;
+	string error_message = 10;
+}
+
+message ProcessResponse {
+	bool success = 1;
+	string error_message = 2;
+}
+
+service GrpcReceiver {
+	rpc Process (MessageEnvelope) returns (ProcessResponse);
+}
