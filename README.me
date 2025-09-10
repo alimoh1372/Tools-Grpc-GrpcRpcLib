@@ -1,0 +1,42 @@
+# GrpcRpcLib Project
+
+[English](#english) | [فارسی](#فارسی)
+
+---
+
+## English
+
+### Overview
+`GrpcRpcLib` is a .NET 8-based project implementing a gRPC-based messaging system with a Publisher-Consumer architecture. It supports multiple database backends (Sqlite, SqlServer, InMemory) for message storage and provides a robust way to send and process messages using gRPC.
+
+This README provides detailed instructions on how to set up, configure, and run the project, including details on configuring `appsettings.json`, database options, and gRPC settings.
+
+### Table of Contents
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+- [Configuration](#configuration)
+  - [Consumer Configuration](#consumer-configuration)
+  - [Publisher Configuration](#publisher-configuration)
+  - [Message Store Configuration](#message-store-configuration)
+- [Running the Project](#running-the-project)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+
+### Project Structure
+The solution consists of the following projects:
+- **GrpcRpcLib.Shared**: Contains shared logic, including `MessageDbContext`, `IMessageStore`, and database-related configurations (`Sqlite`, `SqlServer`, `InMemory`).
+- **GrpcRpcLib.Consumer**: Implements the gRPC Consumer service that receives and processes messages.
+- **GrpcRpcLib.Publisher**: Implements the Publisher service that sends messages to the Consumer via gRPC.
+- **GrpcRpcLib.Test.Publisher**: A test project to simulate sending messages from the Publisher.
+
+### Prerequisites
+Ensure you have the following installed:
+- **.NET 8 SDK**: Download from [Microsoft .NET](https://dotnet.microsoft.com/download/dotnet/8.0).
+- **Visual Studio 2022** (or later) or any IDE supporting .NET 8 (e.g., Rider, VS Code).
+- **SQLite** (optional, for Sqlite database): Install `sqlite3` or a SQLite browser (e.g., DB Browser for SQLite).
+- **gRPC Tools**: For testing gRPC services, install `grpcurl`:
+  ```bash
+  go install github.com/fullstorydev/grpcurl/...@latest

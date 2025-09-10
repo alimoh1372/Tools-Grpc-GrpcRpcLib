@@ -7,7 +7,7 @@ public class MessageEnvelope
 	public string CorrelationId { get; set; } = string.Empty;
 	public int Priority { get; set; } = 0; // 0=low, higher=better
 	public string ReplyTo { get; set; } = "";
-	public byte[] Payload { get; set; } = Array.Empty<byte>();
+	public byte[] Payload { get; set; } = [];
 	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	public string Status { get; set; } = "TryingToPublish";
 	public int RetryCount { get; set; } = 0;

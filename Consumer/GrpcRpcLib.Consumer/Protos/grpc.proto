@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "GrpcRpcLib.Publisher.Protos";
+option csharp_namespace = "GrpcRpcLib.Consumer.Protos";
 
 message MessageEnvelope {
 	string id = 1;

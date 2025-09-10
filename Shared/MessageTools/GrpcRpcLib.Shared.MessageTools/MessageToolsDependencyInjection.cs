@@ -1,11 +1,10 @@
 ﻿using GrpcRpcLib.Shared.MessageTools.Abstraction;
 using GrpcRpcLib.Shared.MessageTools.DataBase;
+using GrpcRpcLib.Shared.MessageTools.Dtos.Configurations;
 using GrpcRpcLib.Shared.MessageTools.Implementation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using GrpcRpcLib.Shared.MessageTools.Abstraction;
-using GrpcRpcLib.Shared.MessageTools.DataBase;
 
 namespace GrpcRpcLib.Shared.MessageTools;
 public static class MessageToolsDependencyInjection
@@ -25,9 +24,11 @@ public static class MessageToolsDependencyInjection
 	/// <returns></returns>
 	public static IServiceCollection AddMessageStore(this IServiceCollection services, IConfiguration configuration)
 	{
-		var storageType = configuration.GetValue<string>("MessageStore:Type", "InMemory");
-		var connectionString = configuration.GetValue<string>("MessageStore:ConnectionString", "Data Source=messages.db");
-		var prefix = configuration.GetValue<string>("MessageStore:Prefix", "");
+		var storageType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Type", "InMemory");
+
+		var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:ConnectionString", "Data Source=messages.db");
+
+		var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Prefix", "");
 
 		switch (storageType)
 		{
@@ -44,6 +45,7 @@ public static class MessageToolsDependencyInjection
 					var dbContext = sp.GetRequiredService<MessageDbContext>();
 					// Ensure migrations are applied
 					dbContext.Database.Migrate();
+
 					return new SqlServerMessageStore(dbContext, prefix);
 				});
 
@@ -63,8 +65,10 @@ public static class MessageToolsDependencyInjection
 				services.AddScoped<IMessageStore>(sp =>
 				{
 					var dbContext = sp.GetRequiredService<MessageDbContext>();
+
 					// For SQLite, use EnsureCreated or Migrate
 					dbContext.Database.EnsureCreated(); // or Migrate() if using migrations
+
 					return new SqliteMessageStore(dbContext, prefix);
 				});
 
@@ -74,10 +78,19 @@ public static class MessageToolsDependencyInjection
 					prefix
 				));
 				break;
+			case "InMemory":
+				services.AddDbContext<MessageDbContext>(options =>
+				{
+					options.UseInMemoryDatabase("GrpcTestDb"); // نام دیتابیس ثابت برای تست
+				}, ServiceLifetime.Scoped);
+
+				services.AddScoped<IMessageStore>(sp => new InMemoryMessageStore());
+
+				break;
 
 			default:
-				// Fallback to InMemory or other implementation if needed
-				services.AddScoped<IMessageStore>(sp => new InMemoryMessageStore()); // Assuming InMemoryMessageStore exists
+				throw new InvalidOperationException($"Unsupported store type: {storageType}");
+
 				break;
 		}
 

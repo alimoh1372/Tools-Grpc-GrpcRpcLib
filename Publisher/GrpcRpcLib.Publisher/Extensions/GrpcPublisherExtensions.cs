@@ -1,5 +1,6 @@
 ﻿using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Publisher.Services;
+using GrpcRpcLib.Shared.MessageTools;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,8 @@ public static class GrpcPublisherExtensions
 
 		// Optionally add IMemoryCache if not already added
 		services.AddMemoryCache();
+
+		services.AddSingleton<GrpcPublisher>();
 
 		return services;
 	}

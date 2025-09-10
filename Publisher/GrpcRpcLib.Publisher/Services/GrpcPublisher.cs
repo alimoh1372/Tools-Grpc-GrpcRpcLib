@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 using Grpc.Core;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Configuration;
@@ -10,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 using MessageEnvelope = GrpcRpcLib.Shared.Entities.Models.MessageEnvelope;
@@ -41,13 +44,13 @@ public class GrpcPublisher
 	public CancellationToken CancellationToken { get; private set; }
 
 	public GrpcPublisher(
-		GrpcPublisherConfiguration config,
+		IOptions<GrpcPublisherConfiguration> config,
 		IMessageStore store,
 		ILogger<GrpcPublisher> logger,
 		MessageDbContext dbContext,
 		AddressResolver addressResolver)
 	{
-		_config = config;
+		_config = config.Value;
 		_store = store;
 		_logger = logger;
 		_dbContext = dbContext;
@@ -73,19 +76,28 @@ public class GrpcPublisher
 		OnPublished += count => _logger.LogInformation($"Published {count} messages.");
 	}
 
-	public async Task Initialize(CancellationToken ct = default)
+	public async Task<(bool success,string errorMessage)> Initialize(CancellationToken ct = default)
 	{
-		CancellationToken = ct;
+		try
+		{
+			CancellationToken = ct;
 
-		await _dbContext.Database.MigrateAsync(ct);
+			_lastTargetHostAddress = await _addressResolver.GetTargetHostAsync();
 
-		_lastTargetHostAddress = await _addressResolver.GetTargetHostAsync();
+			_channel = GrpcChannel.ForAddress(_lastTargetHostAddress);
 
-		_channel = GrpcChannel.ForAddress(_lastTargetHostAddress);
+			_lastReplyToAddress = await _addressResolver.GetReplyToAsync();
 
-		_lastReplyToAddress = await _addressResolver.GetReplyToAsync();
+			_ = Task.Run(() => RetryPendingAsync(ct), ct);
 
-		_ = Task.Run(() => RetryPendingAsync(ct), ct);
+			return (true,"");
+		}
+		catch (Exception e)
+		{
+			return (success:false,
+					errorMessage: e.ToString());
+		}
+		
 	}
 
 	public async Task<(bool success, string errorMessage)> SendAsync(MessageEnvelope envelope, [CallerMemberName] string methodName = null!, [CallerFilePath] string callerPath = null!)
@@ -113,7 +125,7 @@ public class GrpcPublisher
 
 			var protoEnvelope = MapToProto(envelope);
 
-			var responseProto = await client.ProcessAsync(protoEnvelope, deadline: DateTime.UtcNow.Add(_config.TimeoutDuration), cancellationToken: CancellationToken);
+			var responseProto = await client.ProcessAsync(protoEnvelope, deadline: DateTime.UtcNow.Add(TimeSpan.FromSeconds(_config.TimeoutDurationInSeconds)), cancellationToken: CancellationToken);
 
 			if (responseProto.Success)
 			{
@@ -214,7 +226,14 @@ public class GrpcPublisher
 
 		try
 		{
-			var testEnvelope = new Protos.MessageEnvelope { Type = "test" };
+			var testMessage = new TestMessageType() { };
+			var jsonString = JsonConvert.SerializeObject(testMessage);
+			var testEnvelope = new Protos.MessageEnvelope
+			{
+				Type = "test",
+				Payload = Google.Protobuf.ByteString.CopyFromUtf8(jsonString),
+				CorrelationId = Guid.NewGuid().ToString()
+			};
 			var response = await client.ProcessAsync(testEnvelope, deadline: DateTime.UtcNow.AddSeconds(5), cancellationToken: ct);
 			return response.Success;
 		}
@@ -296,7 +315,7 @@ public class GrpcPublisher
 
 			var protoEnvelope = MapToProto(envelope);
 
-			var responseProto = await client.ProcessAsync(protoEnvelope, deadline: DateTime.UtcNow.Add(_config.TimeoutDuration), cancellationToken: CancellationToken);
+			var responseProto = await client.ProcessAsync(protoEnvelope, deadline: DateTime.UtcNow.Add(TimeSpan.FromSeconds(_config.TimeoutDurationInSeconds)), cancellationToken: CancellationToken);
 
 			if (responseProto.Success)
 			{
@@ -372,6 +391,7 @@ public class GrpcPublisher
 			Id = envelope.Id.ToString(),
 			Type = envelope.Type,
 			CorrelationId = envelope.CorrelationId,
+			Priority = envelope.Priority,
 			ReplyTo = envelope.ReplyTo,
 			Payload = Google.Protobuf.ByteString.CopyFrom(envelope.Payload),
 			CreatedAt = envelope.CreatedAt.ToString("o"),
