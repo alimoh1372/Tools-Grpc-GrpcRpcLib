@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="LogConfiguration.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LogConfiguration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -21,4 +25,8 @@
     <ProjectReference Include="..\..\..\Publisher\GrpcRpcLib.Publisher\GrpcRpcLib.Publisher.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SerilogLogger.Implementation" Version="2.0.1" />
+    <PackageReference Include="SerilogLogger.Utilities" Version="2.0.1" />
+  </ItemGroup>
 </Project>

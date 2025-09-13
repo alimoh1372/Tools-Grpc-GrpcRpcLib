@@ -1,23 +1,20 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Text;
 using Grpc.Core;
 using Grpc.Net.Client;
-using Grpc.Net.Client.Configuration;
 using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Publisher.Protos;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
 using GrpcRpcLib.Shared.MessageTools.DataBase;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
+using SerilogLogger.Abstraction.LoggerInterface;
 using MessageEnvelope = GrpcRpcLib.Shared.Entities.Models.MessageEnvelope;
-
-
+using LoggingOptions =SerilogLogger.Abstraction.Dtos.LoggingOptions;
+using LogLevel = SerilogLogger.Abstraction.Enums.LogLevel;
 
 
 namespace GrpcRpcLib.Publisher.Services;
@@ -26,7 +23,6 @@ public class GrpcPublisher
 {
 	private readonly GrpcPublisherConfiguration _config;
 	private readonly IMessageStore _store;
-	private readonly ILogger<GrpcPublisher> _logger;
 	private readonly ResiliencePipeline _retryPipeline;
 	private readonly SemaphoreSlim _recoveryLock = new SemaphoreSlim(1, 1); // فقط برای تغییر mode و channel
 	private readonly MessageDbContext _dbContext;
@@ -38,21 +34,38 @@ public class GrpcPublisher
 	private int _isWorkingTarget = 0; // volatile برای check
 
 	public event Action<int>? OnPublished;
-	public Action<(LogLevel logLevel, string messageTemplate, Dictionary<string, object?>? properties, Exception? exception, LoggingOptions? options, string methodName, string callerPath)>? OnBeforePublish;
-	public Action<MessageEnvelope, (LogLevel logLevel, string messageTemplate, Dictionary<string, object?>? properties, Exception? exception, LoggingOptions? options, string methodName, string callerPath)>? OnError;
+
+	public Action<(
+		LogLevel logLevel, 
+		string messageTemplate, 
+		Dictionary<string, object?>? properties, 
+		Exception? exception, 
+		LoggingOptions? options, 
+		string methodName,
+	string callerPath)>? 
+		LogAction;
+
+	public Action<MessageEnvelope, (
+		LogLevel logLevel, 
+		string messageTemplate, 
+		Dictionary<string, object?>? properties, 
+		Exception? exception,
+		LoggingOptions? options,
+		string methodName, 
+		string callerPath
+		)>? OnError;
 
 	public CancellationToken CancellationToken { get; private set; }
 
 	public GrpcPublisher(
 		IOptions<GrpcPublisherConfiguration> config,
 		IMessageStore store,
-		ILogger<GrpcPublisher> logger,
+		ILog logger,
 		MessageDbContext dbContext,
 		AddressResolver addressResolver)
 	{
 		_config = config.Value;
 		_store = store;
-		_logger = logger;
 		_dbContext = dbContext;
 		_addressResolver = addressResolver;
 
@@ -65,15 +78,20 @@ public class GrpcPublisher
 				MaxRetryAttempts = int.MaxValue,
 				OnRetry = args =>
 				{
-					_logger.LogWarning(args.Outcome.Exception,
-						"Retry after {Delay} (attempt {Attempt})",
-						args.RetryDelay, args.AttemptNumber);
+					LogAction?.Invoke(
+						(LogLevel.Warning,
+						$"Retry after {args.RetryDelay} (attempt {args.AttemptNumber})",
+						null,
+						args.Outcome.Exception,
+						null,
+						"RetryMethod",
+						"GrpcPublisher"
+						)); 
 					return default;
 				}
 			})
 			.Build();
 
-		OnPublished += count => _logger.LogInformation($"Published {count} messages.");
 	}
 
 	public async Task<(bool success,string errorMessage)> Initialize(CancellationToken ct = default)
@@ -100,13 +118,15 @@ public class GrpcPublisher
 		
 	}
 
-	public async Task<(bool success, string errorMessage)> SendAsync(MessageEnvelope envelope, [CallerMemberName] string methodName = null!, [CallerFilePath] string callerPath = null!)
+	public async Task<(bool success, string errorMessage)> SendAsync(
+		MessageEnvelope envelope,
+		[CallerMemberName] string methodName = null!, 
+		[CallerFilePath] string callerPath = null!
+		)
 	{
 		envelope.CorrelationId = envelope.Id.ToString();
 
 		envelope.ReplyTo = _lastReplyToAddress;
-
-		OnBeforePublish?.Invoke((LogLevel.Information, "Before publish", null, null, null, methodName, callerPath));
 
 		if (_isRecoveryMode)
 		{
@@ -114,7 +134,16 @@ public class GrpcPublisher
 
 			await _store.SaveAsync(envelope, CancellationToken);
 
-			OnError?.Invoke(envelope, (LogLevel.Error, "In recovery mode", null, null, null, methodName, callerPath));
+			OnError?.Invoke(envelope, (
+				LogLevel.Error,
+					"In recovery mode",
+				null,
+				null,
+				null,
+				methodName,
+				callerPath
+				));
+
 
 			return (false, "Recovery mode: Message queued as Failed");
 		}
@@ -130,29 +159,32 @@ public class GrpcPublisher
 			if (responseProto.Success)
 			{
 				await _store.UpdateStatusAsync(envelope.Id, "Completed", CancellationToken);
+
 				OnPublished?.Invoke(1);
+
 				return (true, string.Empty);
 			}
 			else
 			{
 				await _store.UpdateStatusAsync(envelope.Id, "Failed", responseProto.ErrorMessage, CancellationToken);
 
-				OnError?.Invoke(envelope, (LogLevel.Error, responseProto.ErrorMessage, null, null, null, methodName, callerPath));
+				OnError?.Invoke(envelope, 
+					(LogLevel.Error, responseProto.ErrorMessage, null, null, null, methodName, callerPath));
 
-				// اگر !success، وارد recovery mode
-				if (Interlocked.CompareExchange(ref _isWorkingTarget, 0, 1) == 1) // اگر قبلاً working بود
-				{
-					await _recoveryLock.WaitAsync(CancellationToken);
-					try
-					{
-						_isRecoveryMode = true;
-						_ = Task.Run(() => RecoveryModeAsync(CancellationToken), CancellationToken);
-					}
-					finally
-					{
-						_recoveryLock.Release();
-					}
-				}
+				//// اگر !success، وارد recovery mode
+				//if (Interlocked.CompareExchange(ref _isWorkingTarget, 0, 1) == 1) // اگر قبلاً working بود
+				//{
+				//	await _recoveryLock.WaitAsync(CancellationToken);
+				//	try
+				//	{
+				//		_isRecoveryMode = true;
+				//		_ = Task.Run(() => RecoveryModeAsync(CancellationToken), CancellationToken);
+				//	}
+				//	finally
+				//	{
+				//		_recoveryLock.Release();
+				//	}
+				//}
 
 				return (false, responseProto.ErrorMessage);
 			}
@@ -288,7 +320,16 @@ public class GrpcPublisher
 			}
 			catch (Exception ex) when (!(ex is OperationCanceledException))
 			{
-				_logger.LogError(ex, "Retry loop failed");
+				LogAction?.Invoke((
+					logLevel: LogLevel.Error,
+					messageTemplate: "Retry loop failed",
+					properties:null,
+					exception:ex,
+					loggingOptions:null,
+					"RetryPendingAsync",
+					"GrpcPublisher"
+				));
+
 				await Task.Delay(5000, ct);
 			}
 		}
@@ -300,7 +341,6 @@ public class GrpcPublisher
 
 		envelope.ReplyTo = _lastReplyToAddress;
 
-		OnBeforePublish?.Invoke((LogLevel.Information, "Before publish", null, null, null, methodName, callerPath));
 
 		if (_isRecoveryMode)
 		{

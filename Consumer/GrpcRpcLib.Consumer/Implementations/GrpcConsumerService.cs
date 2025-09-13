@@ -4,7 +4,6 @@ using GrpcRpcLib.Consumer.Dtos.Configurations;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
 using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -13,6 +12,9 @@ using GrpcRpcLib.Consumer.Dtos.Attributes;
 using GrpcRpcLib.Consumer.Protos;
 using Microsoft.Extensions.Options;
 using MessageEnvelope = GrpcRpcLib.Shared.Entities.Models.MessageEnvelope;
+using LoggingOptions= SerilogLogger.Abstraction.Dtos.LoggingOptions;
+using LogLevel = SerilogLogger.Abstraction.Enums.LogLevel;
+using System.Runtime.CompilerServices;
 
 
 namespace GrpcRpcLib.Consumer.Implementations;
@@ -20,27 +22,42 @@ namespace GrpcRpcLib.Consumer.Implementations;
 public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 {
 	private readonly IServiceProvider _serviceProvider;
-	private readonly ILogger<GrpcConsumerService> _logger;
 	private readonly IMessageStore _store;
 	private readonly GrpcRpcConsumerConfiguration _config;
 	private readonly ConcurrentDictionary<string, (MethodInfo Method, Type ParameterType, object Instance)> _receivers = new();
 	public CancellationToken _cancellationToken { get; private set; }
 
 	public event Action<int>? OnReceived;
-	public Action<(LogLevel logLevel, string messageTemplate, Dictionary<string, object?>? properties, Exception? exception, LoggingOptions? options, string? methodName, string? callerPath)>? OnBeforeProcess;
-	public Action<MessageEnvelope, (LogLevel logLevel, string messageTemplate, Dictionary<string, object?>? properties, Exception? exception, LoggingOptions? options, string methodName, string callerPath)>? OnError;
+
+	public Action<(
+			LogLevel logLevel,
+			string messageTemplate,
+			Dictionary<string, object?>? properties,
+			Exception? exception,
+			LoggingOptions? options,
+			string methodName,
+			string callerPath)>?
+		LogAction;
+
+	public Action<MessageEnvelope, (
+		LogLevel logLevel,
+		string messageTemplate,
+		Dictionary<string, object?>? properties,
+		Exception? exception,
+		LoggingOptions? options,
+		string methodName,
+		string callerPath
+		)>? OnError;
+
 
 	public GrpcConsumerService(
 		IServiceProvider serviceProvider, 
-		IMessageStore store, 
-		ILogger<GrpcConsumerService> logger,IOptions<GrpcRpcConsumerConfiguration> config)
+		IMessageStore store,
+		IOptions<GrpcRpcConsumerConfiguration> config)
 	{
 		_serviceProvider = serviceProvider;
 		_store = store;
-		_logger = logger;
 		_config = config.Value;
-
-		OnReceived += count => _logger.LogInformation($"Received {count} messages.");
 	}
 
 	public async Task<(bool success,string errorMessage)> Initialize(CancellationToken ct = default)
@@ -67,7 +84,20 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 		{
 			envelope = MapToEnvelope(request);
 
-			OnBeforeProcess?.Invoke((LogLevel.Information, "Before processing", null, null, null, nameof(Process), nameof(GrpcConsumerService)));
+			LogAction?.Invoke(
+				(
+					LogLevel.Information, 
+					"Before processing",
+					new Dictionary<string, object>()
+					{
+						{"methodName","Process"},
+						{"className","GrpcConsumerService"}
+
+					}, 
+					null, 
+					null,
+					null,
+					null)!);
 
 			await _store.SaveAsync(envelope, context.CancellationToken);
 
@@ -94,8 +124,6 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 
 			envelope.Status = "Completed";
 
-			envelope.Payload = Encoding.UTF8.GetBytes("Success");
-
 			await _store.UpdateStatusAsync(envelope.Id, "Completed", context.CancellationToken);
 
 			OnReceived?.Invoke(1);
@@ -115,7 +143,7 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 		}
 	}
 
-	private void RegisterReceivers()
+	private void RegisterReceivers([CallerMemberName] string methodName = null!, [CallerFilePath] string callerPath = null!)
 	{
 		using var scope = _serviceProvider.CreateScope();
 
@@ -185,6 +213,18 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 				_receivers[attribute.ProcessorType] = (method, parameterType, receiver);
 			}
 		}
+
+		LogAction?.Invoke(
+			(
+				LogLevel.Debug,
+				"Regestration of processors completed.",
+				new Dictionary<string, object>()
+				{ {"number of processors",_receivers.Count} },
+				null,
+				null,
+				methodName,
+				callerPath)!
+			);
 	}
 
 	private IGrpcProcessor? GetServiceInstance(IServiceProvider provider, Type type)

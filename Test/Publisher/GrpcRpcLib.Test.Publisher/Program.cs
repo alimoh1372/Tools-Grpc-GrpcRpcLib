@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SerilogLogger.Abstraction.LoggerInterface;
+using SerilogLogger.Implementation;
 
 // Setup DI
 var services = new ServiceCollection();
@@ -25,10 +27,12 @@ services.AddMessageStore(configs);
 
 services.AddGrpcPublisher(configs);
 
+services.AddLoggerDependencies(configs);
 // Add your other services (config, store, dbContext, resolver) - فرض بر mock یا real
 var provider = services.BuildServiceProvider();
 
 var publisher = provider.GetRequiredService<GrpcPublisher>(); // یا new با inject
+var logger = provider.GetRequiredService<ILog>();
 
 var db = provider.GetRequiredService<MessageDbContext>();
 
@@ -45,6 +49,17 @@ await db.ServiceAddresses.AddAsync(new ServiceAddress
 });
 await db.SaveChangesAsync();
 
+publisher.LogAction = (log) =>
+{
+	logger.Information(
+		log.messageTemplate,
+		log.properties,
+		log.exception,
+		log.options,
+		log.methodName,
+		log.callerPath
+		);
+};
 var result =await publisher.Initialize();
 
 if (result.success == false)
@@ -64,6 +79,10 @@ var envelope = new MessageEnvelope
 	Payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(new TestMessageType { MessageContent = "test" }))
 };
 
+publisher.LogAction = (logging) =>
+{
+	
+};
 result = await publisher.SendAsync(envelope);
 
 long endMem = Process.GetCurrentProcess().PrivateMemorySize64;
@@ -99,3 +118,4 @@ endMem = Process.GetCurrentProcess().PrivateMemorySize64;
 sw.Stop();
 
 Console.WriteLine($"1000 messages: Time = {sw.ElapsedMilliseconds}ms, Memory delta = {endMem - startMem} bytes");
+Console.ReadKey();
