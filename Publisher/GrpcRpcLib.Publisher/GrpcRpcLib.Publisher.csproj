@@ -1,39 +1,60 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
+		<!-- NuGet Package Configuration -->
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>GrpcRpcLib.Publisher</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<Version>1.0.0</Version>
+		<Title>Publishing Message with grpc</Title>
+		<Authors>AliMoh</Authors>
+		<Company>AM</Company>
+		<Product>GrpcRpcLib</Product>
+		<Description>Ensure publishing message with retry and backprocess</Description>
+		<PackageTags>Grpc;Rpc;Grpc messaging;Entiteis;Models;Status;Publish;Publishing;Ensure Publish;</PackageTags>
+		<PackageProjectUrl>https://github.com/alimoh1372/Tools-Grpc-GrpcRpcLib</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/alimoh1372/Tools-Grpc-GrpcRpcLib</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Initial release with core entiteis and models.</PackageReleaseNotes>
+		<Copyright>Copyright © AliMoh 2025</Copyright>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Configurations\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
-    <PackageReference Include="Polly" Version="8.6.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
-    <PackageReference Include="Google.Protobuf" Version="3.32.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.72.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SerilogLogger.Abstraction" Version="2.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\grpc.proto" GrpcServices="Client" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
+		<PackageReference Include="Polly" Version="8.6.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+		<PackageReference Include="Google.Protobuf" Version="3.32.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.72.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="SerilogLogger.Abstraction" Version="2.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Protos\grpc.proto" GrpcServices="Client" />
+	</ItemGroup>
 
 </Project>
