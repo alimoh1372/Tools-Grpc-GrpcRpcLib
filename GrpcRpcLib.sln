@@ -7,25 +7,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publisher", "Publisher", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8BC7A88A-A81F-4602-B54B-7852B8E7FA6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Shared.Entities", "Shared\GrpcRpcLib.Shared.Entiteis\GrpcRpcLib.Shared.Entities.csproj", "{6F802F60-03C1-43CD-8295-9E461A792513}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Shared.Entities", "Shared\GrpcRpcLib.Shared.Entiteis\GrpcRpcLib.Shared.Entities.csproj", "{6F802F60-03C1-43CD-8295-9E461A792513}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageTools", "MessageTools", "{E4934B30-28CE-4519-BCF3-C435A09BE380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Shared.MessageTools", "Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj", "{D8C9E423-6677-459D-9960-6C7A4420D0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Shared.MessageTools", "Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj", "{D8C9E423-6677-459D-9960-6C7A4420D0D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{078D1902-B4F4-4BBD-B6B9-3362F80811B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Publisher", "Publisher\GrpcRpcLib.Publisher\GrpcRpcLib.Publisher.csproj", "{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Publisher", "Publisher\GrpcRpcLib.Publisher\GrpcRpcLib.Publisher.csproj", "{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumer", "Consumer", "{25ACA163-9371-4996-8C5B-2B4DF06B912E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Consumer", "Consumer\GrpcRpcLib.Consumer\GrpcRpcLib.Consumer.csproj", "{45AD415F-5928-4D53-8427-45D4AAC2C02B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Consumer", "Consumer\GrpcRpcLib.Consumer\GrpcRpcLib.Consumer.csproj", "{45AD415F-5928-4D53-8427-45D4AAC2C02B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CFBF4E14-BB39-44DF-8F82-456D383CF978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.Consumer", "Test\Consumer\GrpcRpcLib.Test.Consumer\GrpcRpcLib.Test.Consumer.csproj", "{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Test.Consumer", "Test\Consumer\GrpcRpcLib.Test.Consumer\GrpcRpcLib.Test.Consumer.csproj", "{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.Publisher", "Test\Publisher\GrpcRpcLib.Test.Publisher\GrpcRpcLib.Test.Publisher.csproj", "{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Test.Publisher", "Test\Publisher\GrpcRpcLib.Test.Publisher\GrpcRpcLib.Test.Publisher.csproj", "{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyncDb", "SyncDb", "{2D10366D-9DD1-4EF5-912B-2764493F8425}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.SyncDb", "Test\SyncDb\GrpcRpcLib.Test.SyncDb\GrpcRpcLib.Test.SyncDb.csproj", "{0E825153-DFE5-4F30-847F-2E9AF374B61C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.SyncDb.CentralService", "Test\SyncDb\GrpcRpcLib.Test.SyncDb.CentralService\GrpcRpcLib.Test.SyncDb.CentralService.csproj", "{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +63,14 @@ Global
 		{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E825153-DFE5-4F30-847F-2E9AF374B61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E825153-DFE5-4F30-847F-2E9AF374B61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E825153-DFE5-4F30-847F-2E9AF374B61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E825153-DFE5-4F30-847F-2E9AF374B61C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +84,9 @@ Global
 		{45AD415F-5928-4D53-8427-45D4AAC2C02B} = {25ACA163-9371-4996-8C5B-2B4DF06B912E}
 		{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6} = {CFBF4E14-BB39-44DF-8F82-456D383CF978}
 		{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF} = {CFBF4E14-BB39-44DF-8F82-456D383CF978}
+		{2D10366D-9DD1-4EF5-912B-2764493F8425} = {CFBF4E14-BB39-44DF-8F82-456D383CF978}
+		{0E825153-DFE5-4F30-847F-2E9AF374B61C} = {2D10366D-9DD1-4EF5-912B-2764493F8425}
+		{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2} = {2D10366D-9DD1-4EF5-912B-2764493F8425}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2A860CC-8CB5-42B5-8BD4-D4C94F07C575}

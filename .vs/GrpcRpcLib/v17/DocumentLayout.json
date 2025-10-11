@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\consumer\\grpcrpclib.consumer\\grpcrpclib.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|solutionrelative:consumer\\grpcrpclib.consumer\\grpcrpclib.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\grpcrpclib.publisher.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\grpcrpclib.publisher.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb\\grpcrpclib.test.syncdb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb\\grpcrpclib.test.syncdb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GrpcRpcLib.Consumer",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
-              "RelativeDocumentMoniker": "Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
-              "RelativeToolTip": "Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
-              "ViewState": "AQIAACYAAAAAuWDVPEscwBIAAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-11T12:01:06.025Z",
+              "Title": "Product.cs",
+              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\Product.cs",
+              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\Product.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\Product.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T12:22:35.559Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GrpcRpcLib.Publisher",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "ViewState": "AQIAABIAAAAAAAAAAAAEwBoAAAAwAAAA",
+              "Title": "User.cs",
+              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\User.cs",
+              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\User.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T12:22:22.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GrpcRpcLib.Test.SyncDb",
+              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj",
+              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb\\GrpcRpcLib.Test.SyncDb.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-11T12:01:01.477Z",
+              "WhenOpened": "2025-10-11T12:22:11.754Z",
               "EditorCaption": ""
             }
           ]
