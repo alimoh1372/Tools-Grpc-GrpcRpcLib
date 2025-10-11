@@ -1,29 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
-    <PackageReference Include="SerilogLogger.Abstraction" Version="2.0.1" />
-  </ItemGroup>
+		<!-- NuGet Package Configuration -->
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>GrpcRpcLib.Consumer</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<Version>1.0.0</Version>
+		<Title>Consuming Message from grpc</Title>
+		<Authors>AliMoh</Authors>
+		<Company>AM</Company>
+		<Product>GrpcRpcLib</Product>
+		<Description>Consuming message from grpc;process for every type of message</Description>
+		<PackageTags>Grpc;Rpc;Grpc messaging;Entiteis;Models;Status;Publish;Publishing;Ensure Publish;</PackageTags>
+		<PackageProjectUrl>https://github.com/alimoh1372/Tools-Grpc-GrpcRpcLib</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/alimoh1372/Tools-Grpc-GrpcRpcLib</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Initial release with core entiteis and models.</PackageReleaseNotes>
+		<Copyright>Copyright © AliMoh 2025</Copyright>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\grpc.proto" GrpcServices="Server" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
+		<PackageReference Include="SerilogLogger.Abstraction" Version="2.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstractions\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\grpc.proto" GrpcServices="Server" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Abstractions\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj" />
+	</ItemGroup>
 
 </Project>

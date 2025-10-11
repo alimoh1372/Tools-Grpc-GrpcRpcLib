@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\consumer\\grpcrpclib.consumer\\grpcrpclib.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|solutionrelative:consumer\\grpcrpclib.consumer\\grpcrpclib.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\grpcrpclib.publisher.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\grpcrpclib.publisher.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\shared\\messagetools\\grpcrpclib.shared.messagetools\\grpcrpclib.shared.messagetools.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|solutionrelative:shared\\messagetools\\grpcrpclib.shared.messagetools\\grpcrpclib.shared.messagetools.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\shared\\grpcrpclib.shared.entiteis\\grpcrpclib.shared.entities.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj|solutionrelative:shared\\grpcrpclib.shared.entiteis\\grpcrpclib.shared.entities.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}|Test\\Publisher\\GrpcRpcLib.Test.Publisher\\GrpcRpcLib.Test.Publisher.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\test\\publisher\\grpcrpclib.test.publisher\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}|Test\\Publisher\\GrpcRpcLib.Test.Publisher\\GrpcRpcLib.Test.Publisher.csproj|solutionrelative:test\\publisher\\grpcrpclib.test.publisher\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\services\\grpcpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\services\\grpcpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\consumer\\grpcrpclib.consumer\\implementations\\grpcconsumerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45AD415F-5928-4D53-8427-45D4AAC2C02B}|Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj|solutionrelative:consumer\\grpcrpclib.consumer\\implementations\\grpcconsumerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}|Test\\Publisher\\GrpcRpcLib.Test.Publisher\\GrpcRpcLib.Test.Publisher.csproj|f:\\public project\\tools\\grpc\\grpcrpclib\\test\\publisher\\grpcrpclib.test.publisher\\logconfiguration.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A15876B2-A1F9-4EC2-BBCF-E5F80C7084CF}|Test\\Publisher\\GrpcRpcLib.Test.Publisher\\GrpcRpcLib.Test.Publisher.csproj|solutionrelative:test\\publisher\\grpcrpclib.test.publisher\\logconfiguration.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,90 +23,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GrpcRpcLib.Publisher",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAABGAAAA",
+              "Title": "GrpcRpcLib.Consumer",
+              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
+              "RelativeDocumentMoniker": "Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
+              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
+              "RelativeToolTip": "Consumer\\GrpcRpcLib.Consumer\\GrpcRpcLib.Consumer.csproj",
+              "ViewState": "AQIAACYAAAAAuWDVPEscwBIAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-11T11:55:10.333Z",
+              "WhenOpened": "2025-10-11T12:01:06.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GrpcRpcLib.Shared.MessageTools",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
-              "RelativeDocumentMoniker": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
-              "RelativeToolTip": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAACAAAA",
+              "Title": "GrpcRpcLib.Publisher",
+              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
+              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
+              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
+              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj",
+              "ViewState": "AQIAABIAAAAAAAAAAAAEwBoAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-11T11:47:42.227Z",
+              "WhenOpened": "2025-10-11T12:01:01.477Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GrpcRpcLib.Shared.Entities",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj",
-              "RelativeDocumentMoniker": "Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj",
-              "RelativeToolTip": "Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAEwBsAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-11T11:40:43.738Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\Publisher\\GrpcRpcLib.Test.Publisher\\Program.cs",
-              "RelativeDocumentMoniker": "Test\\Publisher\\GrpcRpcLib.Test.Publisher\\Program.cs",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\Publisher\\GrpcRpcLib.Test.Publisher\\Program.cs",
-              "RelativeToolTip": "Test\\Publisher\\GrpcRpcLib.Test.Publisher\\Program.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAAAHgAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T05:02:50.282Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LogConfiguration.json",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\Publisher\\GrpcRpcLib.Test.Publisher\\LogConfiguration.json",
-              "RelativeDocumentMoniker": "Test\\Publisher\\GrpcRpcLib.Test.Publisher\\LogConfiguration.json",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Test\\Publisher\\GrpcRpcLib.Test.Publisher\\LogConfiguration.json",
-              "RelativeToolTip": "Test\\Publisher\\GrpcRpcLib.Test.Publisher\\LogConfiguration.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-13T04:40:30.4Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GrpcConsumerService.cs",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\Implementations\\GrpcConsumerService.cs",
-              "RelativeDocumentMoniker": "Consumer\\GrpcRpcLib.Consumer\\Implementations\\GrpcConsumerService.cs",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Consumer\\GrpcRpcLib.Consumer\\Implementations\\GrpcConsumerService.cs",
-              "RelativeToolTip": "Consumer\\GrpcRpcLib.Consumer\\Implementations\\GrpcConsumerService.cs",
-              "ViewState": "AQIAACcBAAAAAAAAAAAmwOIAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T04:32:25.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GrpcPublisher.cs",
-              "DocumentMoniker": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
-              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
-              "ToolTip": "F:\\Public project\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
-              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
-              "ViewState": "AQIAAHEAAAAAAAAAAAAwwHgAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T04:26:41.057Z"
             }
           ]
         }
