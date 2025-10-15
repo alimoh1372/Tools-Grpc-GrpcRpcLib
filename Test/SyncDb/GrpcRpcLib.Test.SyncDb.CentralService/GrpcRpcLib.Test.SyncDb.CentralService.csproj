@@ -10,7 +10,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
+
+    <PackageReference Include="SerilogLogger.Implementation" Version="2.0.2" />
+    <PackageReference Include="SerilogLogger.Utilities" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Publisher\GrpcRpcLib.Publisher\GrpcRpcLib.Publisher.csproj" />
+    <ProjectReference Include="..\..\..\Shared\MessageTools\GrpcRpcLib.Shared.MessageTools\GrpcRpcLib.Shared.MessageTools.csproj" />
+    <ProjectReference Include="..\GrpcRpcLib.Test.SyncDb.Shared\GrpcRpcLib.Test.SyncDb.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="LogConfiguration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

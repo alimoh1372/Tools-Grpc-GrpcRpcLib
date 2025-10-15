@@ -2,39 +2,49 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using GrpcRpcLib.Shared.MessageTools.Dtos.Configurations;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace GrpcRpcLib.Shared.MessageTools.DataBase;
 
 public class MessageDbContextFactory : IDesignTimeDbContextFactory<MessageDbContext>
 {
+	
 	public MessageDbContext CreateDbContext(string[] args)
 	{
+		var basePath = AppContext.BaseDirectory;
 		var configuration = new ConfigurationBuilder()
-			.SetBasePath(AppContext.BaseDirectory)
-			.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+			.SetBasePath(basePath)
+			.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+			.AddEnvironmentVariables() // allow override by env var
 			.Build();
 
-		var storeType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Type", "Sqlite");
-		var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:ConnectionString", "Data Source=consumer.db");
-		var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Prefix", "");
+		MessageStoreConfiguration config = configuration.GetSection(MessageStoreConfiguration.SectionName)
+			.Get<MessageStoreConfiguration>() ?? new MessageStoreConfiguration();
+		
+		//var storeType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageType", "Sqlite");
+		//var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageConnectionString", "Data Source=consumer.db");
+		//var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StoragePrefix", "");
 
 		var optionsBuilder = new DbContextOptionsBuilder<MessageDbContext>();
 
-		switch (storeType)
+		var options = Options.Create(config);
+
+		switch (config.StorageType)
 		{
 			case "SqlServer":
-				optionsBuilder.UseSqlServer(connectionString);
+				optionsBuilder.UseSqlServer(config.StorageConnectionString);
 				break;
 			case "Sqlite":
-				optionsBuilder.UseSqlite(connectionString);
+				optionsBuilder.UseSqlite(config.StorageConnectionString);
 				break;
 			case "InMemory":
 				optionsBuilder.UseInMemoryDatabase("GrpcTestDb");
 				break;
 			default:
-				throw new InvalidOperationException($"Unsupported store type: {storeType}");
+				throw new InvalidOperationException($"Unsupported store type: {config.StorageType}");
 		}
 
-		return new MessageDbContext(optionsBuilder.Options, prefix);
+		return new MessageDbContext(optionsBuilder.Options,options);
 	}
 }

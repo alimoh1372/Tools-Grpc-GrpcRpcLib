@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Test.Publisher",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyncDb", "SyncDb", "{2D10366D-9DD1-4EF5-912B-2764493F8425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.SyncDb", "Test\SyncDb\GrpcRpcLib.Test.SyncDb\GrpcRpcLib.Test.SyncDb.csproj", "{0E825153-DFE5-4F30-847F-2E9AF374B61C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Test.SyncDb.Shared", "Test\SyncDb\GrpcRpcLib.Test.SyncDb.Shared\GrpcRpcLib.Test.SyncDb.Shared.csproj", "{0E825153-DFE5-4F30-847F-2E9AF374B61C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcRpcLib.Test.SyncDb.CentralService", "Test\SyncDb\GrpcRpcLib.Test.SyncDb.CentralService\GrpcRpcLib.Test.SyncDb.CentralService.csproj", "{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcRpcLib.Test.SyncDb.CentralService", "Test\SyncDb\GrpcRpcLib.Test.SyncDb.CentralService\GrpcRpcLib.Test.SyncDb.CentralService.csproj", "{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,6 +5,7 @@ using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Publisher.Protos;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
 using GrpcRpcLib.Shared.MessageTools.DataBase;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -60,14 +61,13 @@ public class GrpcPublisher
 	public GrpcPublisher(
 		IOptions<GrpcPublisherConfiguration> config,
 		IMessageStore store,
-		ILog logger,
-		MessageDbContext dbContext,
-		AddressResolver addressResolver)
+		IServiceProvider serviceProvider)
 	{
+		var scope=serviceProvider.CreateScope();
 		_config = config.Value;
 		_store = store;
-		_dbContext = dbContext;
-		_addressResolver = addressResolver;
+		_dbContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+		_addressResolver = scope.ServiceProvider.GetRequiredService<AddressResolver>();
 
 		_retryPipeline = new ResiliencePipelineBuilder()
 			.AddRetry(new RetryStrategyOptions
@@ -115,7 +115,6 @@ public class GrpcPublisher
 			return (success:false,
 					errorMessage: e.ToString());
 		}
-		
 	}
 
 	public async Task<(bool success, string errorMessage)> SendAsync(

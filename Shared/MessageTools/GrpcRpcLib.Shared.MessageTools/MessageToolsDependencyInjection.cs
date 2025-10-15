@@ -24,60 +24,55 @@ public static class MessageToolsDependencyInjection
 	/// <returns></returns>
 	public static IServiceCollection AddMessageStore(this IServiceCollection services, IConfiguration configuration)
 	{
-		var storageType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Type", "InMemory");
+		services.Configure<MessageStoreConfiguration>(configuration.GetSection(MessageStoreConfiguration.SectionName));
 
-		var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:ConnectionString", "Data Source=messages.db");
+		var storageType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageType", "InMemory");
 
-		var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:Prefix", "");
+		var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageConnectionString", "Data Source=messages.db");
 
+		var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StoragePrefix", "");
+		
 		switch (storageType)
 		{
 			case "SqlServer":
-				services.AddDbContext<MessageDbContext>(options =>
+				services.AddDbContext<MessageDbContext>(
+					option =>
 				{
-					options.UseSqlServer(connectionString);
-					// Apply prefix to DbContext via options if needed, but since prefix is used in OnModelCreating, pass it via factory or options
-					// For simplicity, we'll use a factory to inject prefix
-				}, ServiceLifetime.Scoped);
-
-				services.AddScoped<IMessageStore>(sp =>
-				{
-					var dbContext = sp.GetRequiredService<MessageDbContext>();
-					// Ensure migrations are applied
-					dbContext.Database.Migrate();
-
-					return new SqlServerMessageStore(dbContext, prefix);
+					if (!option.IsConfigured)
+					{
+						option.UseSqlServer(connectionString);
+					}
 				});
 
-				// Register prefix for DbContext if needed, but since DbContext constructor takes prefix, use factory
-				services.AddScoped(provider => new MessageDbContext(
-					provider.GetRequiredService<DbContextOptions<MessageDbContext>>(),
-					prefix
-				));
+				services.AddSingleton<IMessageStore, SqlServerMessageStore>();
+
+				var sp=services.BuildServiceProvider();
+				
+				var db=sp.GetRequiredService<MessageDbContext>();
+				
+				db.Database.Migrate();
+
 				break;
 
 			case "Sqlite":
 				services.AddDbContext<MessageDbContext>(options =>
 				{
 					options.UseSqlite(connectionString);
-				}, ServiceLifetime.Scoped);
-
-				services.AddScoped<IMessageStore>(sp =>
-				{
-					var dbContext = sp.GetRequiredService<MessageDbContext>();
-
-					// For SQLite, use EnsureCreated or Migrate
-					dbContext.Database.EnsureCreated(); // or Migrate() if using migrations
-
-					return new SqliteMessageStore(dbContext, prefix);
 				});
 
-				// Register prefix for DbContext
-				services.AddScoped(provider => new MessageDbContext(
-					provider.GetRequiredService<DbContextOptions<MessageDbContext>>(),
-					prefix
-				));
+				services.AddSingleton<IMessageStore,SqliteMessageStore>();
+				
+				var serviceProvider=services.BuildServiceProvider();
+
+				using (var scope = serviceProvider.CreateScope())
+				{
+					var sqliteMessageDbContext = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+
+					sqliteMessageDbContext.Database.EnsureCreated();
+				}
+
 				break;
+
 			case "InMemory":
 				services.AddDbContext<MessageDbContext>(options =>
 				{
