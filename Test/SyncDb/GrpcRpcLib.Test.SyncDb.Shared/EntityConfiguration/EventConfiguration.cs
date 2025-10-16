@@ -12,6 +12,8 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
 
 		builder.HasKey(x => x.EventId);
 
+		builder.Property(x => x.Priority).IsRequired();
+
 		builder.Property(x => x.AggregateType).HasMaxLength(100).IsRequired();
 
 		builder.Property(x => x.EventType).HasMaxLength(100).IsRequired();
@@ -24,7 +26,7 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
 
 		builder.Property(x => x.CreatedAt).HasDefaultValueSql("SYSUTCDATETIME()");
 
-		builder.HasIndex(x => new { x.AggregateType, x.AggregateId, x.SequenceNumber });
+		builder.HasIndex(x => new { x.AggregateType, x.AggregateId, x.SequenceNumber,x.Priority });
 
 		builder.HasIndex(x => x.Status);
 	}

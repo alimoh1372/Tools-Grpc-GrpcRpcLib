@@ -33,7 +33,28 @@ public class AddressResolver(
 			_cachedTargetHost = cachedValue;
 		}
 
-		return _cachedTargetHost;
+		return _cachedTargetHost!;
+	}
+
+	public async Task<string> GetTargetHostByIdAsync(string id, bool forceRefresh = false)
+	{
+		
+		var cacheKey = $"TargetHost_{id}";
+
+		if (forceRefresh || !cache.TryGetValue(cacheKey, out string? cachedValue))
+		{
+
+			var serviceAddress = await dbContext.ServiceAddresses
+				.FirstOrDefaultAsync(s => s.ServiceName == cacheKey);
+
+			cachedValue= serviceAddress?.Address ?? throw new InvalidOperationException($"TargetHost with ID {cacheKey} not found in DB.");
+
+			cache.Set(cacheKey, cachedValue, TimeSpan.FromMinutes(10));
+
+		}
+
+		return cachedValue!;
+
 	}
 
 	public async Task<string> GetReplyToAsync(bool forceRefresh = false)

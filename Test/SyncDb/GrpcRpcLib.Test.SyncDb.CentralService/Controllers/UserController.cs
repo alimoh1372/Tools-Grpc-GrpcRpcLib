@@ -4,6 +4,7 @@ using GrpcRpcLib.Shared.Entities.Models;
 using GrpcRpcLib.Test.SyncDb.Shared.Abstractions;
 using GrpcRpcLib.Test.SyncDb.Shared.CentralDbContextAggregate;
 using GrpcRpcLib.Test.SyncDb.Shared.Dtos;
+using GrpcRpcLib.Test.SyncDb.Shared.Dtos.Enums;
 using GrpcRpcLib.Test.SyncDb.Shared.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService.Controllers
 				{
 					EventId = Guid.NewGuid(),
 					AggregateType = "User",
-					AggregateId = u.Id,
+					AggregateId = (int)AggregateId.User,
 					EventType = "AddUser",
 					Payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(addUserEventDto)), // evDto همان AddUserEventDto که ساخته‌ای
 					CreatedAt = DateTime.UtcNow
@@ -43,13 +44,15 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService.Controllers
 
 				var trns = await db.Database.BeginTransactionAsync();
 
-				var lastSeq = await sequenceProvider.GetNextSequenceAsync(db, ev.AggregateType, ev.AggregateId);
+				ev.SequenceNumber = await sequenceProvider.GetNextSequenceAsync(db, ev.AggregateType, ev.AggregateId);
 
 				db.Users.Add(u);
 
 				db.Events.Add(ev);
 
 				await db.SaveChangesAsync();
+
+				await trns.CommitAsync();
 
 				return Ok($"User Add Successfully,UserId:{u.Id}");
 

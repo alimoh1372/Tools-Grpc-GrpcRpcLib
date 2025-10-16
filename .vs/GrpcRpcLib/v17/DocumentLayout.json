@@ -3,8 +3,64 @@
   "WorkspaceRootPath": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\migrations\\20251015070846_initialcentraldbmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\migrations\\20251015070846_initialcentraldbmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\services\\addressresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\services\\addressresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\services\\grpcpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\services\\grpcpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\mainworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\mainworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\grpcrpclib.shared.entiteis\\models\\messageenvelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F802F60-03C1-43CD-8295-9E461A792513}|Shared\\GrpcRpcLib.Shared.Entiteis\\GrpcRpcLib.Shared.Entities.csproj|solutionrelative:shared\\grpcrpclib.shared.entiteis\\models\\messageenvelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\logconfiguration.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\logconfiguration.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\entityconfiguration\\eventconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\entityconfiguration\\eventconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\publisher\\grpcrpclib.publisher\\extensions\\grpcpublisherextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5AB10BE-050E-4616-87CF-ACE5DF0FB6AD}|Publisher\\GrpcRpcLib.Publisher\\GrpcRpcLib.Publisher.csproj|solutionrelative:publisher\\grpcrpclib.publisher\\extensions\\grpcpublisherextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\messagetools\\grpcrpclib.shared.messagetools\\database\\messagedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|solutionrelative:shared\\messagetools\\grpcrpclib.shared.messagetools\\database\\messagedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\messagetools\\grpcrpclib.shared.messagetools\\messagetoolsdependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|solutionrelative:shared\\messagetools\\grpcrpclib.shared.messagetools\\messagetoolsdependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}|Test\\Consumer\\GrpcRpcLib.Test.Consumer\\GrpcRpcLib.Test.Consumer.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\consumer\\grpcrpclib.test.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}|Test\\Consumer\\GrpcRpcLib.Test.Consumer\\GrpcRpcLib.Test.Consumer.csproj|solutionrelative:test\\consumer\\grpcrpclib.test.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}|Test\\Consumer\\GrpcRpcLib.Test.Consumer\\GrpcRpcLib.Test.Consumer.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\consumer\\grpcrpclib.test.consumer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F7889D9F-660A-4D5B-8100-ED8C45C9E5A6}|Test\\Consumer\\GrpcRpcLib.Test.Consumer\\GrpcRpcLib.Test.Consumer.csproj|solutionrelative:test\\consumer\\grpcrpclib.test.consumer\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\implementations\\sqlserversequenceprovider .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,20 +71,16 @@
       "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\dtos\\enums\\aggregateid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\dtos\\enums\\aggregateid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\migrations\\20251015070846_initialcentraldbmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\migrations\\20251015070846_initialcentraldbmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.shared\\abstractions\\isequenceprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E825153-DFE5-4F30-847F-2E9AF374B61C}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\GrpcRpcLib.Test.SyncDb.Shared.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.shared\\abstractions\\isequenceprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{565FDEA9-BDD6-43B7-9069-0E37E9DCAEF2}|Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\GrpcRpcLib.Test.SyncDb.CentralService.csproj|solutionrelative:test\\syncdb\\grpcrpclib.test.syncdb.centralservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|d:\\tamrin\\public projects\\tools\\grpc\\grpcrpclib\\shared\\messagetools\\grpcrpclib.shared.messagetools\\messagetoolsdependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8C9E423-6677-459D-9960-6C7A4420D0D9}|Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\GrpcRpcLib.Shared.MessageTools.csproj|solutionrelative:shared\\messagetools\\grpcrpclib.shared.messagetools\\messagetoolsdependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,32 +95,201 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AddressResolver.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\AddressResolver.cs",
+              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\Services\\AddressResolver.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\AddressResolver.cs",
+              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\Services\\AddressResolver.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAowCsAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T10:17:36.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GrpcPublisher.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
+              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
+              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\Services\\GrpcPublisher.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAuwGYAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T10:14:30.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MessageEnvelope.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "RelativeDocumentMoniker": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "RelativeToolTip": "Shared\\GrpcRpcLib.Shared.Entiteis\\Models\\MessageEnvelope.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAA1wAgAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T10:13:43.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EventConfiguration.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\EntityConfiguration\\EventConfiguration.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\EntityConfiguration\\EventConfiguration.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\EntityConfiguration\\EventConfiguration.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\EntityConfiguration\\EventConfiguration.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:08:44.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Event.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Entities\\Event.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Entities\\Event.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Entities\\Event.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Entities\\Event.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAowA4AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:07:51.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWorker.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\MainWorker.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\MainWorker.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\MainWorker.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\MainWorker.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAlwGkAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:01:21.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GrpcPublisherExtensions.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Extensions\\GrpcPublisherExtensions.cs",
+              "RelativeDocumentMoniker": "Publisher\\GrpcRpcLib.Publisher\\Extensions\\GrpcPublisherExtensions.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Publisher\\GrpcRpcLib.Publisher\\Extensions\\GrpcPublisherExtensions.cs",
+              "RelativeToolTip": "Publisher\\GrpcRpcLib.Publisher\\Extensions\\GrpcPublisherExtensions.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBgAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:00:49.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MessageDbContext.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\DataBase\\MessageDbContext.cs",
+              "RelativeDocumentMoniker": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\DataBase\\MessageDbContext.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\DataBase\\MessageDbContext.cs",
+              "RelativeToolTip": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\DataBase\\MessageDbContext.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAgwB0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T07:00:17.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LogConfiguration.json",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\LogConfiguration.json",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\LogConfiguration.json",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\LogConfiguration.json",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\LogConfiguration.json",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB0AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T06:53:05.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.Development.json",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.Development.json",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T06:52:23.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\Consumer\\GrpcRpcLib.Test.Consumer\\Program.cs",
+              "RelativeDocumentMoniker": "Test\\Consumer\\GrpcRpcLib.Test.Consumer\\Program.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\Consumer\\GrpcRpcLib.Test.Consumer\\Program.cs",
+              "RelativeToolTip": "Test\\Consumer\\GrpcRpcLib.Test.Consumer\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T12:23:26.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\Consumer\\GrpcRpcLib.Test.Consumer\\appsettings.json",
+              "RelativeDocumentMoniker": "Test\\Consumer\\GrpcRpcLib.Test.Consumer\\appsettings.json",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\Consumer\\GrpcRpcLib.Test.Consumer\\appsettings.json",
+              "RelativeToolTip": "Test\\Consumer\\GrpcRpcLib.Test.Consumer\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T06:50:32.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AggregateId.cs",
+              "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Dtos\\Enums\\AggregateId.cs",
+              "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Dtos\\Enums\\AggregateId.cs",
+              "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Dtos\\Enums\\AggregateId.cs",
+              "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Dtos\\Enums\\AggregateId.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T05:11:02.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "20251015070846_InitialCentralDbMigration.cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Migrations\\20251015070846_InitialCentralDbMigration.cs",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Migrations\\20251015070846_InitialCentralDbMigration.cs",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Migrations\\20251015070846_InitialCentralDbMigration.cs",
               "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Migrations\\20251015070846_InitialCentralDbMigration.cs",
-              "ViewState": "AQIAAOQAAAAAAAAAAAAcwPYAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJYAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T14:20:16.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 15,
               "Title": "SqlServerSequenceProvider .cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Implementations\\SqlServerSequenceProvider .cs",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Implementations\\SqlServerSequenceProvider .cs",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Implementations\\SqlServerSequenceProvider .cs",
               "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Implementations\\SqlServerSequenceProvider .cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAkwG0AAAADAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwBgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T12:33:35.893Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "ISequenceProvider.cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Abstractions\\ISequenceProvider.cs",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.Shared\\Abstractions\\ISequenceProvider.cs",
@@ -81,52 +302,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 16,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Controllers\\UserController.cs",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Controllers\\UserController.cs",
               "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Controllers\\UserController.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAArwC0AAAAEAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAjwBwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T12:29:05.847Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.json",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.json",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.json",
               "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-10-15T12:29:20.924Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Program.cs",
               "RelativeDocumentMoniker": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Program.cs",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Program.cs",
               "RelativeToolTip": "Test\\SyncDb\\GrpcRpcLib.Test.SyncDb.CentralService\\Program.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAArwCgAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAArwBYAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T12:28:53.846Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "MessageToolsDependencyInjection.cs",
               "DocumentMoniker": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\MessageToolsDependencyInjection.cs",
               "RelativeDocumentMoniker": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\MessageToolsDependencyInjection.cs",
               "ToolTip": "D:\\TAMRIN\\Public Projects\\Tools\\Grpc\\GrpcRpcLib\\Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\MessageToolsDependencyInjection.cs",
               "RelativeToolTip": "Shared\\MessageTools\\GrpcRpcLib.Shared.MessageTools\\MessageToolsDependencyInjection.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAhwBEAAAAFAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAIAwwCUAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T12:23:26.118Z",
               "EditorCaption": ""

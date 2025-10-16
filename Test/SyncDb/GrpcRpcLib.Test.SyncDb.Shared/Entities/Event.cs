@@ -3,6 +3,7 @@
 public class Event
 {
 	public Guid EventId { get; set; } = Guid.NewGuid();
+	public int Priority { get; set; } = 10;
 	public string AggregateType { get; set; } = "";
 	public int AggregateId { get; set; }
 	public long SequenceNumber { get; set; } = 0;
