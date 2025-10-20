@@ -77,6 +77,9 @@ namespace GrpcRpcLib.Test.SyncDb.Shared.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("ProcessorInstanceId")
                         .HasColumnType("uniqueidentifier");
 
@@ -94,7 +97,7 @@ namespace GrpcRpcLib.Test.SyncDb.Shared.Migrations
 
                     b.HasIndex("Status");
 
-                    b.HasIndex("AggregateType", "AggregateId", "SequenceNumber");
+                    b.HasIndex("AggregateType", "AggregateId", "SequenceNumber", "Priority");
 
                     b.ToTable("Events", (string)null);
                 });

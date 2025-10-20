@@ -8,15 +8,13 @@ using Microsoft.Extensions.Options;
 namespace GrpcRpcLib.Shared.MessageTools.DataBase;
 public class MessageDbContext : DbContext
 {
-	private readonly string _prefix;
+	
 
 	public MessageDbContext(
-		DbContextOptions<MessageDbContext> options, 
-		IOptions<MessageStoreConfiguration> cfg)
+		DbContextOptions<MessageDbContext> options)
 		: base(options)
 	{
-		// اگر cfg null بود prefix خالی خواهد بود
-		_prefix = cfg?.Value?.StoragePrefix ?? string.Empty;
+		
 	}
 
 	public DbSet<MessageEnvelope> Messages { get; set; }
@@ -24,7 +22,7 @@ public class MessageDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfiguration(new MessageEnvelopeConfiguration(_prefix));
-		modelBuilder.ApplyConfiguration(new ServiceAddressConfiguration(_prefix));
+		modelBuilder.ApplyConfiguration(new MessageEnvelopeConfiguration());
+		modelBuilder.ApplyConfiguration(new ServiceAddressConfiguration());
 	}
 }

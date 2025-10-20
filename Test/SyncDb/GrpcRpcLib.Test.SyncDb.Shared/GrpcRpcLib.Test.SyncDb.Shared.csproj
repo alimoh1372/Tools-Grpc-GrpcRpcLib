@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Dtos\Enums\" />
     <Folder Include="Entities\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrpcRpcLib.Shared.MessageTools.Migrations
 {
     [DbContext(typeof(MessageDbContext))]
-    [Migration("20251012154853_InitialMessageDbContext")]
-    partial class InitialMessageDbContext
+    [Migration("20251020080530_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace GrpcRpcLib.Shared.MessageTools.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReplyTo")
+                    b.Property<string>("ReplyToId")
                         .IsRequired()
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
@@ -66,6 +66,11 @@ namespace GrpcRpcLib.Shared.MessageTools.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("TargetId")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -73,23 +78,33 @@ namespace GrpcRpcLib.Shared.MessageTools.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CentPub_MessageEnvelopes", (string)null);
+                    b.ToTable("MessageEnvelopes", (string)null);
                 });
 
             modelBuilder.Entity("GrpcRpcLib.Shared.MessageTools.Dtos.ServiceAddress", b =>
                 {
-                    b.Property<string>("ServiceName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.HasKey("ServiceName");
+                    b.Property<bool>("CurrentService")
+                        .HasColumnType("bit");
 
-                    b.ToTable("CentPub_ServiceAddresses", (string)null);
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceAddresses", (string)null);
                 });
 #pragma warning restore 612, 618
         }

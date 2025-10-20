@@ -6,20 +6,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GrpcRpcLib.Shared.MessageTools.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMessageDbContext : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CentPub_MessageEnvelopes",
+                name: "MessageEnvelopes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TargetId = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Type = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     CorrelationId = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Priority = table.Column<int>(type: "int", nullable: false),
-                    ReplyTo = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    ReplyToId = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
                     Payload = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -29,19 +30,22 @@ namespace GrpcRpcLib.Shared.MessageTools.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CentPub_MessageEnvelopes", x => x.Id);
+                    table.PrimaryKey("PK_MessageEnvelopes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CentPub_ServiceAddresses",
+                name: "ServiceAddresses",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    CurrentService = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CentPub_ServiceAddresses", x => x.ServiceName);
+                    table.PrimaryKey("PK_ServiceAddresses", x => x.Id);
                 });
         }
 
@@ -49,10 +53,10 @@ namespace GrpcRpcLib.Shared.MessageTools.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CentPub_MessageEnvelopes");
+                name: "MessageEnvelopes");
 
             migrationBuilder.DropTable(
-                name: "CentPub_ServiceAddresses");
+                name: "ServiceAddresses");
         }
     }
 }

@@ -296,7 +296,7 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 			Type = proto.Type,
 			CorrelationId = proto.CorrelationId,
 			Priority = proto.Priority,
-			ReplyTo = proto.ReplyTo,
+			ReplyToId = proto.ReplyTo,
 			Payload = proto.Payload.ToByteArray(),
 			CreatedAt = DateTime.Parse(proto.CreatedAt),
 			Status = proto.Status,

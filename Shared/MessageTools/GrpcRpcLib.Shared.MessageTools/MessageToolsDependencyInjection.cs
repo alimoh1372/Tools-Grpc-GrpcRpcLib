@@ -29,8 +29,6 @@ public static class MessageToolsDependencyInjection
 		var storageType = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageType", "InMemory");
 
 		var connectionString = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StorageConnectionString", "Data Source=messages.db");
-
-		var prefix = configuration.GetValue<string>($"{MessageStoreConfiguration.SectionName}:StoragePrefix", "");
 		
 		switch (storageType)
 		{

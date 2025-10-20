@@ -4,15 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GrpcRpcLib.Shared.MessageTools.DataBase.Models;
 
-public class MessageEnvelopeConfiguration(string prefix = "") : IEntityTypeConfiguration<MessageEnvelope>
+public class MessageEnvelopeConfiguration() : IEntityTypeConfiguration<MessageEnvelope>
 {
 	public void Configure(EntityTypeBuilder<MessageEnvelope> builder)
 	{
-		builder.ToTable(prefix + "MessageEnvelopes");
+		builder.ToTable("MessageEnvelopes");
 		builder.HasKey(m => m.Id);
+		builder.Property(m => m.TargetId)
+			.IsRequired()
+			.HasMaxLength(256);
 		builder.Property(m => m.Type).IsRequired().HasMaxLength(256);
 		builder.Property(m => m.CorrelationId).HasMaxLength(256);
-		builder.Property(m => m.ReplyTo).HasMaxLength(512);
+		builder.Property(m => m.ReplyToId).HasMaxLength(512);
 		builder.Property(m => m.Payload).IsRequired();
 		builder.Property(m => m.CreatedAt).IsRequired();
 		builder.Property(m => m.Status).IsRequired().HasMaxLength(50);

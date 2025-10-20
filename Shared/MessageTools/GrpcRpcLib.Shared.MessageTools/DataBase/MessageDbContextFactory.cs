@@ -28,8 +28,6 @@ public class MessageDbContextFactory : IDesignTimeDbContextFactory<MessageDbCont
 
 		var optionsBuilder = new DbContextOptionsBuilder<MessageDbContext>();
 
-		var options = Options.Create(config);
-
 		switch (config.StorageType)
 		{
 			case "SqlServer":
@@ -45,6 +43,6 @@ public class MessageDbContextFactory : IDesignTimeDbContextFactory<MessageDbCont
 				throw new InvalidOperationException($"Unsupported store type: {config.StorageType}");
 		}
 
-		return new MessageDbContext(optionsBuilder.Options,options);
+		return new MessageDbContext(optionsBuilder.Options);
 	}
 }

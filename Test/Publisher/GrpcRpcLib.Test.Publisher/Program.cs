@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using Google.Protobuf.Reflection;
+using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Publisher.Extensions;
 using GrpcRpcLib.Publisher.Services;
 using GrpcRpcLib.Shared.Entities.Models;
@@ -12,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SerilogLogger.Abstraction.LoggerInterface;
 using SerilogLogger.Implementation;
+using SerilogLogger.Utilities.LoggerTools;
+using LogLevel = SerilogLogger.Abstraction.Enums.LogLevel;
 
 // Setup DI
 var services = new ServiceCollection();
@@ -32,9 +36,12 @@ services.AddLoggerDependencies(configs);
 var provider = services.BuildServiceProvider();
 
 var publisher = provider.GetRequiredService<GrpcPublisher>(); // یا new با inject
+
+//publisher.SetConfigs(opt => { });
 var logger = provider.GetRequiredService<ILog>();
 
 var db = provider.GetRequiredService<MessageDbContext>();
+
 
 await db.ServiceAddresses.AddAsync(new ServiceAddress
 {
@@ -47,6 +54,7 @@ await db.ServiceAddresses.AddAsync(new ServiceAddress
 	ServiceName = "32",
 	Address = @"http:\\127.0.0.1:6000"
 });
+
 await db.SaveChangesAsync();
 
 publisher.LogAction = (log) =>
@@ -60,11 +68,16 @@ publisher.LogAction = (log) =>
 		log.callerPath
 		);
 };
+
+var grpcPublisherConfig = configs.GetSection(GrpcPublisherConfiguration.SectionName).Get<GrpcPublisherConfiguration>();
+publisher.SetConfigs(grpcPublisherConfig!);
+
 var result =await publisher.Initialize();
 
 if (result.success == false)
 {
 	Console.WriteLine($"Can't start publisher.ErrorMessage:{result.errorMessage}");
+	return;
 }
 
 Console.WriteLine("Press key to start tests...");
@@ -81,7 +94,15 @@ var envelope = new MessageEnvelope
 
 publisher.LogAction = (logging) =>
 {
-	
+	//switch (logging.logLevel)
+	//{
+	//	case LogLevel.Information:
+	//		logger.StartLog()
+	//			.wi
+	//			.AsInformation()
+				
+			
+	//}
 };
 result = await publisher.SendAsync(envelope);
 
@@ -97,6 +118,7 @@ startMem = Process.GetCurrentProcess().PrivateMemorySize64;
 
 for (int i = 0; i < 100; i++)
 {
+	envelope.Id=Guid.NewGuid();
 	await publisher.SendAsync(envelope);
 }
 
@@ -111,6 +133,7 @@ startMem = Process.GetCurrentProcess().PrivateMemorySize64;
 
 for (int i = 0; i < 1000; i++)
 {
+	envelope.Id=Guid.NewGuid();
 	await publisher.SendAsync(envelope);
 }
 

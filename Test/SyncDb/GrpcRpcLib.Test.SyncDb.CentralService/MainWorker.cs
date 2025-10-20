@@ -3,6 +3,7 @@ using GrpcRpcLib.Test.SyncDb.Shared.CentralDbContextAggregate;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using Dapper;
+using GrpcRpcLib.Shared.MessageTools.DataBase;
 using GrpcRpcLib.Test.SyncDb.Shared.Entities;
 
 namespace GrpcRpcLib.Test.SyncDb.CentralService;
@@ -10,11 +11,17 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService;
 public class MainWorker:BackgroundService
 {
 	private readonly IServiceProvider _serviceProvider;
+
 	private readonly GrpcPublisher _publisher;
+
 	private readonly string _instanceId; 
+
 	private readonly TimeSpan _pollDelay = TimeSpan.FromSeconds(2);
+
 	private readonly TimeSpan _watchdogPeriod = TimeSpan.FromMinutes(1);
+
 	private readonly TimeSpan _processingTimeout = TimeSpan.FromHours(24);
+
 	private CancellationToken _stoppingToken;
 
 	private const string sqlClaimQuery= @"
@@ -53,20 +60,7 @@ OUTPUT INSERTED;
 
 			tasks.Add(Task.Run(async()=>await Processing(_stoppingToken),_stoppingToken));
 
-			while (!_stoppingToken.IsCancellationRequested)
-			{
-				try
-				{
-					var eventP=await _db.Events(ev=>).FirstOrDefaultAsync()
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine(ex);
-					throw;
-				}
-
-				await Task.Delay(5000, _stoppingToken);
-			}
+			await Task.WhenAll(tasks);
 		}
 		catch (Exception ex)
 		{
@@ -89,8 +83,11 @@ OUTPUT INSERTED;
 				if (ev == null)
 				{
 					await Task.Delay(_pollDelay, stoppingToken);
+
 					continue;
 				}
+
+				
 
 				var envelope = new GrpcRpcLib.Shared.Entities.Models.MessageEnvelope
 				{
@@ -102,17 +99,56 @@ OUTPUT INSERTED;
 					CreatedAt = ev.CreatedAt,
 					Status = "TryingToPublish"
 				};
-				//Get other service address sent to all 
-				var (ok, err) = await _publisher.SendAsync(envelope);
 
-				await MarkEventAfterPublishAsync(ev.EventId, ok, err, stoppingToken);
+				var messagesDb = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+
+				//Get other service address sent to all 
+				foreach (var serviceAddress in await messagesDb.ServiceAddresses.Where(x=>x.CurrentService==false).ToListAsync(_stoppingToken))
+				{
+					var (ok, err) = await _publisher.SendAsync(envelope);
+				}
+				
+
+				await MarkEventAfterPublishAsync(ev.EventId, true, null, stoppingToken);
+
 			}
 			catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { }
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "MainWorker loop error");
+				
 				await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
 			}
+		}
+	}
+
+	private async Task MarkEventAfterPublishAsync(Guid eventId, bool success, string? errorMessage, CancellationToken ct)
+	{
+		await using var scope = _serviceProvider.CreateAsyncScope();
+
+		var db = scope.ServiceProvider.GetRequiredService<CentralDbContext>();
+
+		var conn = db.Database.GetDbConnection();
+
+		if (conn.State != ConnectionState.Open) await conn.OpenAsync(ct);
+
+
+		if (success)
+		{
+			var sql = @"UPDATE dbo.Events
+                    SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = NULL, ErrorMessage = NULL
+                    WHERE EventId = @id";
+
+			await conn.ExecuteAsync(sql, new { status = "PublishedToOtherServiceCompletely", id = eventId });
+		}
+
+		else
+		{
+			var sql = @"UPDATE dbo.Events
+                    SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = NULL, ErrorMessage = @err
+                    WHERE EventId = @id";
+
+			await conn.ExecuteAsync(sql, new { status = "Failed", id = eventId, err = errorMessage ?? "" });
+
 		}
 	}
 	private async Task<Event?> ClaimOnePendingEventAsync(CentralDbContext db, CancellationToken ct)
@@ -120,7 +156,6 @@ OUTPUT INSERTED;
 		var conn = db.Database.GetDbConnection();
 
 		if (conn.State != ConnectionState.Open) await conn.OpenAsync(ct);
-
 		
 		var parameters = new
 		{
@@ -133,23 +168,6 @@ OUTPUT INSERTED;
 		var row = await conn.QuerySingleOrDefaultAsync<Event>(sqlClaimQuery, parameters);
 
 		if (row == null) return null;
-
-		//// Map dynamic to Event (careful with types)
-		//var ev = new Event
-		//{
-		//	EventId = (Guid)row.EventId,
-		//	Priority = (int)row.Priority,
-		//	AggregateType = (string)row.AggregateType,
-		//	AggregateId = (int)row.AggregateId,
-		//	SequenceNumber = (long)row.SequenceNumber,
-		//	EventType = (string)row.EventType,
-		//	Payload = row.Payload == null ? Array.Empty<byte>() : (byte[])row.Payload,
-		//	Status = (string)row.Status,
-		//	Attempts = (int)row.Attempts,
-		//	CreatedAt = (DateTime)row.CreatedAt,
-		//	LastAttemptAt = row.LastAttemptAt == null ? (DateTime?)null : (DateTime)row.LastAttemptAt,
-		//	ProcessorInstanceId = row.ProcessorInstanceId == null ? (Guid?)null : (Guid)row.ProcessorInstanceId
-		//};
 
 		return row;
 	}
@@ -171,8 +189,11 @@ OUTPUT INSERTED;
 	private async Task RequeueStuckProcessingAsync(CancellationToken ct)
 	{
 		await using var scope = _serviceProvider.CreateAsyncScope();
+
 		var db = scope.ServiceProvider.GetRequiredService<CentralDbContext>();
+
 		var conn = db.Database.GetDbConnection();
+
 		if (conn.State != ConnectionState.Open) await conn.OpenAsync(ct);
 
 		var cutoff = DateTime.UtcNow - _processingTimeout;
