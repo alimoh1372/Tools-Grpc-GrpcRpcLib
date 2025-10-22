@@ -3,18 +3,17 @@ using GrpcRpcLib.Test.SyncDb.Shared.CentralDbContextAggregate;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using Dapper;
+using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Shared.MessageTools.DataBase;
 using GrpcRpcLib.Test.SyncDb.Shared.Entities;
 
 namespace GrpcRpcLib.Test.SyncDb.CentralService;
 
-public class MainWorker:BackgroundService
+public class MainWorker : BackgroundService
 {
 	private readonly IServiceProvider _serviceProvider;
 
 	private readonly GrpcPublisher _publisher;
-
-	private readonly string _instanceId; 
 
 	private readonly TimeSpan _pollDelay = TimeSpan.FromSeconds(2);
 
@@ -24,47 +23,36 @@ public class MainWorker:BackgroundService
 
 	private CancellationToken _stoppingToken;
 
-	private const string sqlClaimQuery= @"
-WITH cte AS (
-    SELECT TOP (1) *
-    FROM dbo.Events WITH (ROWLOCK, READPAST, UPDLOCK)
-    WHERE Status = @statusPending
-    ORDER BY Priority DESC, SequenceNumber ASC, CreatedAt ASC
-)
-UPDATE cte
-SET 
-    Status = @statusProcessing,
-    ProcessorInstanceId = @procId,
-    Attempts = ISNULL(Attempts,0) + 1,
-    LastAttemptAt = SYSUTCDATETIME()
-OUTPUT INSERTED;
-";
 
-	public MainWorker(GrpcPublisher publisher,IConfiguration config, IServiceProvider serviceProvider)
+
+	public MainWorker(GrpcPublisher publisher, IConfiguration config, IServiceProvider serviceProvider)
 	{
 		_publisher = publisher;
-		_serviceProvider = serviceProvider;
-		_instanceId = config["Properties:ApplicationId"] ?? "UnkonwPublisherConsumer";
 
+		var publisherConfig = config.GetSection(GrpcPublisherConfiguration.SectionName)
+			.Get<GrpcPublisherConfiguration>();
+
+		_publisher.SetConfigs(publisherConfig ?? new GrpcPublisherConfiguration());
+		_serviceProvider = serviceProvider;
 	}
 
 	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
 	{
-		_stoppingToken=stoppingToken;
-		
-		var tasks=new List<Task>();
+		_stoppingToken = stoppingToken;
+
+		var tasks = new List<Task>();
 
 		try
 		{
-			tasks.Add(Task.Run(async () =>await WatchdogLoop(stoppingToken), stoppingToken));
+			tasks.Add(Task.Run(async () => await WatchdogLoop(stoppingToken), stoppingToken));
 
-			tasks.Add(Task.Run(async()=>await Processing(_stoppingToken),_stoppingToken));
+			tasks.Add(Task.Run(async () => await Processing(_stoppingToken), _stoppingToken));
 
 			await Task.WhenAll(tasks);
 		}
 		catch (Exception ex)
 		{
-			
+
 		}
 	}
 
@@ -72,13 +60,14 @@ OUTPUT INSERTED;
 	{
 		while (!stoppingToken.IsCancellationRequested)
 		{
+			Guid? eventId = null;
 			try
 			{
 				await using var scope = _serviceProvider.CreateAsyncScope();
 
 				var db = scope.ServiceProvider.GetRequiredService<CentralDbContext>();
 
-				var ev = await ClaimOnePendingEventAsync(db,stoppingToken);
+				var ev = await ClaimOnePendingEventAsync(db, stoppingToken);
 
 				if (ev == null)
 				{
@@ -87,11 +76,10 @@ OUTPUT INSERTED;
 					continue;
 				}
 
-				
+				eventId = ev.EventId;
 
 				var envelope = new GrpcRpcLib.Shared.Entities.Models.MessageEnvelope
 				{
-					Id = ev.EventId,
 					Type = ev.EventType,
 					CorrelationId = ev.EventId.ToString(),
 					Priority = ev.Priority,
@@ -100,54 +88,60 @@ OUTPUT INSERTED;
 					Status = "TryingToPublish"
 				};
 
-				var messagesDb = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
+				var result = await _publisher.SendAsync(envelope);
 
-				//Get other service address sent to all 
-				foreach (var serviceAddress in await messagesDb.ServiceAddresses.Where(x=>x.CurrentService==false).ToListAsync(_stoppingToken))
-				{
-					var (ok, err) = await _publisher.SendAsync(envelope);
-				}
-				
+				//var messagesDb = scope.ServiceProvider.GetRequiredService<MessageDbContext>();
 
-				await MarkEventAfterPublishAsync(ev.EventId, true, null, stoppingToken);
+
+
+				////Get other service address sent to all 
+				//foreach (var serviceAddress in await messagesDb.ServiceAddresses.Where(x=>x.CurrentService==false).ToListAsync(_stoppingToken))
+				//{
+				//	var (ok, err) = await _publisher.SendAsync(envelope);
+				//}
+
+				if (result.success)
+					await MarkEventAfterPublishAsync(db, ev.EventId, true, null, stoppingToken);
 
 			}
-			catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { }
+			catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+			{
+				await MarkEventAsFailed(DbSet<,>);
+			}
 			catch (Exception ex)
 			{
-				
+
 				await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
 			}
 		}
 	}
 
-	private async Task MarkEventAfterPublishAsync(Guid eventId, bool success, string? errorMessage, CancellationToken ct)
+	private async Task MarkEventAfterPublishAsync(CentralDbContext db, Guid eventId, bool success,
+		string? errorMessage, CancellationToken ct)
 	{
-		await using var scope = _serviceProvider.CreateAsyncScope();
-
-		var db = scope.ServiceProvider.GetRequiredService<CentralDbContext>();
-
+		
 		var conn = db.Database.GetDbConnection();
 
 		if (conn.State != ConnectionState.Open) await conn.OpenAsync(ct);
 
-
 		if (success)
 		{
 			var sql = @"UPDATE dbo.Events
-                    SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = NULL, ErrorMessage = NULL
+                    SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = @instanceId, ErrorMessage = NULL
                     WHERE EventId = @id";
 
-			await conn.ExecuteAsync(sql, new { status = "PublishedToOtherServiceCompletely", id = eventId });
+			await conn.ExecuteAsync(sql, new { status = "PublishedToOtherServiceCompletely",instanceId=, id = eventId });
 		}
 
 		else
 		{
-			var sql = @"UPDATE dbo.Events
-                    SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = NULL, ErrorMessage = @err
-                    WHERE EventId = @id";
+			var sql = $"""
+			           UPDATE dbo.Events
+			                               SET Status = @status, LastAttemptAt = SYSUTCDATETIME(), ProcessorInstanceId = @instanceId, ErrorMessage = @err
+			                               WHERE EventId = @id
+			           """;
 
-			await conn.ExecuteAsync(sql, new { status = "Failed", id = eventId, err = errorMessage ?? "" });
+			await conn.ExecuteAsync(sql, new { status = "Failed", id = eventId, instanceId=, err = errorMessage ?? "" });
 
 		}
 	}
@@ -156,12 +150,12 @@ OUTPUT INSERTED;
 		var conn = db.Database.GetDbConnection();
 
 		if (conn.State != ConnectionState.Open) await conn.OpenAsync(ct);
-		
+
 		var parameters = new
 		{
 			statusPending = "Pending",
 			statusProcessing = "Processing",
-			procId = _instanceId // Guid worker instance id field
+			procId =  // Guid worker instance id field
 		};
 
 		// Dapper: QuerySingleOrDefault returns a dynamic / map to a POCO
@@ -180,7 +174,7 @@ OUTPUT INSERTED;
 			{
 				await RequeueStuckProcessingAsync(stoppingToken);
 			}
-			catch (Exception ex) {  }
+			catch (Exception ex) { }
 
 			await Task.Delay(_watchdogPeriod, stoppingToken);
 		}

@@ -1,5 +1,6 @@
 using GrpcRpcLib.Publisher.Extensions;
 using GrpcRpcLib.Shared.MessageTools;
+using GrpcRpcLib.Test.SyncDb.CentralService;
 using GrpcRpcLib.Test.SyncDb.Shared.Abstractions;
 using GrpcRpcLib.Test.SyncDb.Shared.CentralDbContextAggregate;
 using GrpcRpcLib.Test.SyncDb.Shared.Implementations;
@@ -29,6 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ISequenceProvider, SqlServerSequenceProvider>();
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddHostedService<MainWorker>();
 
 builder.Services.AddSwaggerGen(c =>
 {

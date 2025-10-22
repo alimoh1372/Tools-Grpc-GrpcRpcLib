@@ -5,16 +5,13 @@ using Grpc.Net.Client;
 using GrpcRpcLib.Publisher.Configurations;
 using GrpcRpcLib.Publisher.Protos;
 using GrpcRpcLib.Shared.MessageTools.Abstraction;
-using GrpcRpcLib.Shared.MessageTools.DataBase;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 using MessageEnvelope = GrpcRpcLib.Shared.Entities.Models.MessageEnvelope;
 using LoggingOptions =SerilogLogger.Abstraction.Dtos.LoggingOptions;
 using LogLevel = SerilogLogger.Abstraction.Enums.LogLevel;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace GrpcRpcLib.Publisher.Services;
@@ -24,7 +21,6 @@ public class GrpcPublisher
 	private readonly IMessageStore _store;
 	private readonly ResiliencePipeline _retryPipeline;
 	private readonly SemaphoreSlim _recoveryLock = new SemaphoreSlim(1, 1); // فقط برای تغییر mode و channel
-	private readonly MessageDbContext _dbContext;
 	private readonly AddressResolver _addressResolver;
 	private volatile bool _isRecoveryMode = false; // volatile برای thread-safety
 	
@@ -38,6 +34,21 @@ public class GrpcPublisher
 	private GrpcReceiver.GrpcReceiverClient _client;
 	private GrpcChannel? _channel;
 
+	private const string sqlClaimQuery = @"
+WITH cte AS (
+    SELECT TOP (1) *
+    FROM dbo.Events
+    WHERE Status = @statusPending And ProcessorInstace
+    ORDER BY Priority DESC, SequenceNumber ASC, CreatedAt ASC
+)
+UPDATE cte
+SET 
+    Status = @statusProcessing,
+    ProcessorInstanceId = @procId,
+    Attempts = ISNULL(Attempts,0) + 1,
+    LastAttemptAt = SYSUTCDATETIME()
+OUTPUT INSERTED.*;
+";
 	public Action<(
 		LogLevel logLevel, 
 		string messageTemplate, 
@@ -68,7 +79,6 @@ public class GrpcPublisher
 	{
 		_serviceProvider=serviceProvider;
 		_store = store;
-		_dbContext = serviceProvider.GetRequiredService<MessageDbContext>();
 		_addressResolver = serviceProvider.GetRequiredService<AddressResolver>();
 		_retryPipeline = new ResiliencePipelineBuilder()
 			.AddRetry(new RetryStrategyOptions
@@ -103,9 +113,7 @@ public class GrpcPublisher
 		_serviceProvider =serviceProvider;
 		_config = new GrpcPublisherConfiguration();
 		configureOption.Invoke(_config);
-		_store = store;
-		_dbContext = serviceProvider.GetRequiredService<MessageDbContext>();
-		_addressResolver = serviceProvider.GetRequiredService<AddressResolver>();
+		_store = store;_addressResolver = serviceProvider.GetRequiredService<AddressResolver>();
 
 		_retryPipeline = new ResiliencePipelineBuilder()
 			.AddRetry(new RetryStrategyOptions

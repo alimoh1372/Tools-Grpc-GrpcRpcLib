@@ -30,23 +30,31 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService.Controllers
 
 				var u = new User { Id = dto.Id, Username = dto.Username, FullName = dto.FullName };
 
-				var addUserEventDto = new AddUserEventDto(u.Id, u.Username, u.FullName);
+				
+				//var addUserEventDto = new AddUserEventDto(u.Id, u.Username, u.FullName);
 
+				
+
+				var trns = await db.Database.BeginTransactionAsync();
+
+
+				db.Users.Add(u);
+
+				await db.SaveChangesAsync();
+				
 				var ev = new Event
 				{
 					EventId = Guid.NewGuid(),
 					AggregateType = "User",
 					AggregateId = (int)AggregateId.User,
 					EventType = "AddUser",
-					Payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(addUserEventDto)), // evDto همان AddUserEventDto که ساخته‌ای
+					Payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(u)), // evDto همان AddUserEventDto که ساخته‌ای
 					CreatedAt = DateTime.UtcNow
 				};
 
-				var trns = await db.Database.BeginTransactionAsync();
-
-				ev.SequenceNumber = await sequenceProvider.GetNextSequenceAsync(db, ev.AggregateType, ev.AggregateId);
-
-				db.Users.Add(u);
+				var sequenceNumber = await sequenceProvider.GetNextSequenceAsync(db, ev.AggregateType, ev.AggregateId);
+				
+				ev.SequenceNumber=sequenceNumber;
 
 				db.Events.Add(ev);
 

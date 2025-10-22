@@ -99,19 +99,11 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 					null,
 					null)!);
 
-			await _store.SaveAsync(envelope, context.CancellationToken);
-
-			envelope.Status = "Received";
-
-			await _store.UpdateStatusAsync(envelope.Id, "Received", context.CancellationToken);
-
 			if (!_receivers.TryGetValue(envelope.Type, out var receiverInfo))
 			{
 				envelope.Status = "Failed";
 
 				envelope.ErrorMessage = "No receiver found";
-
-				await _store.UpdateStatusAsync(envelope.Id, "Failed", envelope.ErrorMessage, context.CancellationToken);
 
 				OnError?.Invoke(envelope, (LogLevel.Error, "No receiver found", null, null, null, nameof(Process), nameof(GrpcConsumerService)));
 
@@ -122,10 +114,6 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 
 			await InvokeReceiver(receiverInfo, entity);
 
-			envelope.Status = "Completed";
-
-			await _store.UpdateStatusAsync(envelope.Id, "Completed", context.CancellationToken);
-
 			OnReceived?.Invoke(1);
 
 			return new ProcessResponse { Success = true, ErrorMessage = "" };
@@ -135,10 +123,13 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 			if (envelope != null)
 			{
 				envelope.Status = "Failed";
+
 				envelope.ErrorMessage = ex.Message;
-				await _store.UpdateStatusAsync(envelope.Id, "Failed", ex.Message, context.CancellationToken);
+
 				OnError?.Invoke(envelope, (LogLevel.Error, ex.Message, null, ex, null, nameof(Process), nameof(GrpcConsumerService)));
+
 			}
+
 			return new ProcessResponse { Success = false, ErrorMessage = ex.Message };
 		}
 	}
@@ -225,6 +216,7 @@ public class GrpcConsumerService : GrpcReceiver.GrpcReceiverBase
 				methodName,
 				callerPath)!
 			);
+
 	}
 
 	private IGrpcProcessor? GetServiceInstance(IServiceProvider provider, Type type)

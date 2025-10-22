@@ -13,5 +13,5 @@ public class Event
 	public int Attempts { get; set; } = 0;
 	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	public DateTime? LastAttemptAt { get; set; }
-	public Guid? ProcessorInstanceId { get; set; }
+	public string ProcessorInstanceId { get; set; }=Guid.NewGuid().ToString();
 }

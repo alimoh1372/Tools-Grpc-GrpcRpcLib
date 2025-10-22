@@ -7,5 +7,7 @@ public class GrpcPublisherConfiguration
 	public string ReplyToId { get; set; } = "13";
 	public int TimeoutDurationInSeconds { get; set; } = 5;
 	public int MaxRetryCount { get; set; } = 3;
-	
+
+	public string PublisherInstanceId { get; set; } = "Publisher_21";
+
 }
