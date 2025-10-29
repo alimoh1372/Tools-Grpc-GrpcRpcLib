@@ -70,6 +70,7 @@ publisher.LogAction = (log) =>
 };
 
 var grpcPublisherConfig = configs.GetSection(GrpcPublisherConfiguration.SectionName).Get<GrpcPublisherConfiguration>();
+
 publisher.SetConfigs(grpcPublisherConfig!);
 
 var result =await publisher.Initialize();

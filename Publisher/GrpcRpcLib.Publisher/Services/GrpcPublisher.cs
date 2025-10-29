@@ -33,22 +33,9 @@ public class GrpcPublisher
 	private GrpcPublisherConfiguration _config;
 	private GrpcReceiver.GrpcReceiverClient _client;
 	private GrpcChannel? _channel;
+	public string CurrentId =>_config.ReplyToId??string.Empty;
 
-	private const string sqlClaimQuery = @"
-WITH cte AS (
-    SELECT TOP (1) *
-    FROM dbo.Events
-    WHERE Status = @statusPending And ProcessorInstace
-    ORDER BY Priority DESC, SequenceNumber ASC, CreatedAt ASC
-)
-UPDATE cte
-SET 
-    Status = @statusProcessing,
-    ProcessorInstanceId = @procId,
-    Attempts = ISNULL(Attempts,0) + 1,
-    LastAttemptAt = SYSUTCDATETIME()
-OUTPUT INSERTED.*;
-";
+
 	public Action<(
 		LogLevel logLevel, 
 		string messageTemplate, 
@@ -176,7 +163,7 @@ OUTPUT INSERTED.*;
 			if(result)	
 				return (true,"");
 			else
-				return (false, $"Target server not working correctly.Failed to sent test message to target host:{_lastTargetHostAddress}");
+				return (false, $"Target server not working correctly.Failed to sent test message to target host:{_lastTargetHostAddress}.");
 		}
 		catch (Exception e)
 		{
@@ -319,8 +306,7 @@ OUTPUT INSERTED.*;
 		try
 		{
 			tasks.Add(Task.Run(async () =>await RetryPendingAsync(stoppingToken),stoppingToken));
-
-
+			
 			await Task.WhenAll(tasks);
 		}
 		catch (Exception ex)

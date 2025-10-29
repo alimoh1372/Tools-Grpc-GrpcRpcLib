@@ -49,7 +49,7 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService.Controllers
 					AggregateId = (int)AggregateId.User,
 					EventType = "AddUser",
 					Payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(u)), // evDto همان AddUserEventDto که ساخته‌ای
-					CreatedAt = DateTime.UtcNow
+					ProcessorInstanceId = "ApplicationId_1"
 				};
 
 				var sequenceNumber = await sequenceProvider.GetNextSequenceAsync(db, ev.AggregateType, ev.AggregateId);
@@ -70,22 +70,6 @@ namespace GrpcRpcLib.Test.SyncDb.CentralService.Controllers
 			{
 				return StatusCode(StatusCodes.Status500InternalServerError);
 			}
-			// چون Id دستی است، همان را ذخیره می‌کنیم
-			
-
-			//// publish event به Consumer
-			
-
-			//var envelope = new MessageEnvelope
-			//{
-			//	Type = "AddUser",
-			//	Payload =Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(ev)),
-			//	CreatedAt = DateTime.UtcNow,
-			//	CorrelationId = Guid.NewGuid().ToString(),
-			//	Priority = 10
-			//};
-
-			//var (ok, err) = await publisher.SendAsync(envelope);
 
 			
 		}
